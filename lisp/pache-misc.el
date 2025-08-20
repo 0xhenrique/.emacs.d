@@ -24,13 +24,13 @@
 	(package-install pkg)))
 
 (load-theme 'pache-dark t)
-(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 ;(add-to-list 'default-frame-alist '(alpha 100 0))
 (setq frame-alpha-lower-limit 0)
 (set-frame-font "Aporetic Sans Mono-12" nil t)
 
-(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (setq-default tab-width 4
 			  standard-indent 4

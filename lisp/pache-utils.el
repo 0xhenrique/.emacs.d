@@ -3,8 +3,8 @@
 ;;; Code:
 
 ;; Set keyboard layout switch (US and ABNT2)
-;(start-process-shell-command
-; "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
+(start-process-shell-command
+ "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
 
 (defun pache/my-consult-bookmark ()
   "Select a bookmark using `completing-read` and copy it to the clipboard."
