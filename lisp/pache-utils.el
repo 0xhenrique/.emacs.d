@@ -5,6 +5,9 @@
 ;; Set keyboard layout switch (US and ABNT2)
 (start-process-shell-command
  "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
+;; Transparency
+(start-process-shell-command
+ "picom" nil "picom")
 
 (defun pache/my-consult-bookmark ()
   "Select a bookmark using `completing-read` and copy it to the clipboard."
@@ -104,6 +107,14 @@
     (if word
         (swiper-isearch word)
       (swiper-isearch))))
+
+(defun pache/suspend-system ()
+  "Suspend the system using shell command."
+  (start-process-shell-command "suspend" nil "sudo sh -c 'echo mem > /sys/power/state'"))
+
+(defun pache/hibernate-system ()
+  "Hibernate the system using shell command."
+  (start-process-shell-command "hibernate" nil "sudo sh -c 'echo disk > /sys/power/state'"))
 
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command

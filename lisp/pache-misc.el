@@ -24,8 +24,8 @@
 	(package-install pkg)))
 
 (load-theme 'pache-dark t)
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-;(add-to-list 'default-frame-alist '(alpha 100 0))
+(set-frame-parameter (selected-frame) 'alpha '(80 . 80))
+(add-to-list 'default-frame-alist '(alpha 100 0))
 (setq frame-alpha-lower-limit 0)
 (set-frame-font "Aporetic Sans Mono-12" nil t)
 
