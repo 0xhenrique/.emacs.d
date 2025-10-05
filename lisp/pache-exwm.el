@@ -15,13 +15,9 @@
 ;(start-process-shell-command
 ; "xrandr" nil "xrandr --output eDP-1 --off --output HDMI-2 --auto")
 
-;; Set keyboard layout switch (US and ABNT2)
-(start-process-shell-command
- "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:alt_shift_toggle'")
-
 ;; Set wallpaper
-;(start-process-shell-command
-; "feh" nil "feh --bg-scale ~/Pictures/papes/patchy/3.jpg")
+(start-process-shell-command
+ "feh" nil "feh --bg-fill ~/Pictures/papes/wp3805997.webp")
 
 ;; Start picom
 ;(start-process-shell-command
