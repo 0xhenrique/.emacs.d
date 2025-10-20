@@ -133,7 +133,7 @@
 ;;(exwm-input-set-key (kbd "s-k") 'ivy-switch-buffer-kill)
 (exwm-input-set-key (kbd "s-s") #'pache/screenshot-with-flameshot)
 
-(exwm-enable)
+(exwm-wm-mode)
 
 (provide 'pache-exwm)
 ;;; pache-exwm.el ends here

@@ -14,6 +14,8 @@
 (load "~/.emacs.d/lisp/pache-keys.el")
 (load "~/.emacs.d/lisp/pache-utils.el")
 (load "~/.emacs.d/lisp/pache-blog.el")
+(load "~/.emacs.d/lisp/pache-platform.el")
+(load "~/.emacs.d/lisp/pache-packages.el")
 
 (load-file "~/workspace/0xhenrique/esb/esb.el")
 (setq epa-pinentry-mode 'loopback)
