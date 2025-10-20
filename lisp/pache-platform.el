@@ -3,13 +3,13 @@
 ;;; Commentary:
 
 (defconst pache/linux-p (eq system-type 'gnu/linux))
-(defconst pache/windows-p (memq system-type '(windows-nt ms-dos)))
+(defconst pache/windows-p (eq system-type 'windows-nt))
 
 (if pache/windows-p
     (progn
       (setq gc-cons-threshold 10000000)  ; 10MB
       (setq inhibit-compacting-font-caches t)  ; Windows font rendering issue
-      (setq w32-pipe-read-delay 0.001)  ; Faster pipe reads
+      ;(setq w32-pipe-read-delay 0.001)  ; Faster pipe reads
       (setq w32-pipe-buffer-size (* 64 1024)))  ; 64KB pipe buffer
   (setq gc-cons-threshold 100000000))
 

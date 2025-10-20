@@ -1,7 +1,6 @@
 ;;; pache-misc.el --- Everything that doesn't fit the other modules -*- lexical-binding: t -*-
 ;;; Code:
 ;;; Commentary:
-
 (dolist (pkg '(editorconfig
 			   ;ivy
 			   sudo-edit
@@ -19,7 +18,7 @@
   (unless (package-installed-p pkg)
 	(package-install pkg)))
 
-(load-theme 'modus-vivendi t)
+(load-theme 'catppuccin :no-confirm)
 (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
 (add-to-list 'default-frame-alist '(alpha 100 0))
 (setq frame-alpha-lower-limit 0)
@@ -95,7 +94,7 @@
 (recentf-mode 1)
 (editorconfig-mode 1)
 (drag-stuff-global-mode 1)
-(global-display-line-numbers-mode -1)
+(global-display-line-numbers-mode 1)
 (global-visual-line-mode 1)
 (blink-cursor-mode -1)
 

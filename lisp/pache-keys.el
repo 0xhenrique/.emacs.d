@@ -29,6 +29,7 @@
 (global-set-key (kbd "C-x p w") 'consult-ripgrep)
 (global-set-key (kbd "C-x b") 'consult-buffer)
 (global-set-key (kbd "C-x /") 'consult-line)
+(global-set-key (kbd "C-x C-/") 'pache/swiper-isearch-thing-at-point)
 ;(global-set-key (kbd "M-y") 'counsel-yank-pop)
 ;(global-set-key (kbd "M-x") 'counsel-M-x)
 ;(global-set-key (kbd "C-x C-/") 'pache/swiper-isearch-thing-at-point)
