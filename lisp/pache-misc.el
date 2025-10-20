@@ -73,7 +73,6 @@
 ;;;;;;;;;;;
 ;; Hooks ;;
 ;;;;;;;;;;;
-(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'prog-mode-hook 'yas-global-mode)
 
 ;;;;;;;;;;;

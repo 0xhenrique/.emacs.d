@@ -14,21 +14,21 @@
   (setq gc-cons-threshold 100000000))
 
 (when pache/windows-p
-  ;; Disable packages known to cause slowdown
   (setq package-native-compile nil)
   
   ;; File operations
-  (setq w32-get-true-file-attributes nil)  ; Don't query file attributes
+  (setq w32-get-true-file-attributes nil)  ; do not query file attributes
   (setq inhibit-compacting-font-caches t)
+  (setq vc-handled-backends '(Git))
   
   ;; Process optimization
-  (setq read-process-output-max (* 64 1024))  ; Not too aggressive
+  (setq read-process-output-max (* 64 1024))
+  (setq process-adaptive-read-buffering nil)
+  (setq read-process-output-max (* 64 1024))
   
-  ;; Ivy/Counsel specific
   (with-eval-after-load 'ivy
-    (setq ivy-dynamic-exhibit-delay-ms 100))  ; Delay before updating
+    (setq ivy-dynamic-exhibit-delay-ms 100))  ; delay before updating
   
-  ;; Flycheck can be slow on Windows
   (with-eval-after-load 'flycheck
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (setq flycheck-idle-change-delay 4.0)))  ; Longer delay
