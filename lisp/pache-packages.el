@@ -100,5 +100,52 @@
     (setq eglot-ignored-server-capabilities 
           '(:inlayHintProvider))))
 
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode)
+  :config
+  (setq vertico-cycle t))
+
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package consult
+  :ensure t
+  :bind (;; C-c bindings (mode-specific-map)
+         ("C-c h" . consult-history)
+         ("C-c m" . consult-mode-command)
+         ("C-c k" . consult-kmacro)
+         ;; C-x bindings (ctl-x-map)
+         ("C-x M-:" . consult-complex-command)
+         ("C-x b" . consult-buffer)
+         ("C-x 4 b" . consult-buffer-other-window)
+         ("C-x 5 b" . consult-buffer-other-frame)
+         ("C-x r b" . consult-bookmark)
+         ;; M-g bindings (goto-map)
+         ("M-g g" . consult-goto-line)
+         ("M-g M-g" . consult-goto-line)
+         ("M-g i" . consult-imenu)
+         ;; M-s bindings (search-map)
+         ("M-s d" . consult-find)
+         ("M-s g" . consult-grep)
+         ("M-s G" . consult-git-grep)
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ;; Other custom bindings
+         ("M-y" . consult-yank-pop))
+  :config
+  (setq consult-narrow-key "<"))
+
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode))
+
 (provide 'pache-packages)
 ;;; pache-packages.el ends here

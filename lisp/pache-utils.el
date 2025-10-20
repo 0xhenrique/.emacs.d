@@ -101,12 +101,12 @@
     (load-theme (nth (random (length themes)) themes) t)))
 
 (defun pache/swiper-isearch-thing-at-point ()
-  "Call `swiper-isearch` with the word at point as the initial input."
+  "Call `consult-line` with the word at point as the initial input."
   (interactive)
   (let ((word (thing-at-point 'word t)))
     (if word
-        (swiper-isearch word)
-      (swiper-isearch))))
+        (consult-line word)
+      (consult-line))))
 
 (defun pache/suspend-system ()
   "Suspend the system using shell command."

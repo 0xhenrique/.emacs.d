@@ -3,9 +3,9 @@
 ;;; Commentary:
 
 (dolist (pkg '(editorconfig
-			   ivy
+			   ;ivy
 			   sudo-edit
-			   counsel
+			   ;counsel
 			   multiple-cursors
 			   drag-stuff
 			   pache-dark-theme
@@ -87,8 +87,8 @@
 (scroll-bar-mode -1)
 (multiple-cursors-mode 1)
 (which-key-mode 1)
-(counsel-mode 1)
-(ivy-mode 1)
+;(counsel-mode 1)
+;(ivy-mode 1)
 (save-place-mode 1)
 (flymake-mode 0)
 (savehist-mode 1)
