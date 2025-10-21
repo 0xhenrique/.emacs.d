@@ -19,9 +19,21 @@
   (compile "npm run test"))
 
 (defun pache/typescript-format ()
-  "Run `npm run format` in the project root."
+  "Format the current file with Prettier."
   (interactive)
-  (compile "npm run format"))
+  (let ((file (shell-quote-argument (buffer-file-name))))
+    (compile (format "npx prettier --write %s" file))))
+
+(defun pache/format-buffer-with-prettier ()
+  "Format buffer with Prettier silently."
+  (when (and buffer-file-name
+             (or (derived-mode-p 'typescript-mode)
+                 (derived-mode-p 'vue-mode)))
+    (let ((file (shell-quote-argument buffer-file-name)))
+      (shell-command (format "npx prettier --write %s" file) nil nil)
+      (revert-buffer t t t))))
+
+;; (add-hook 'after-save-hook #'pache/format-buffer-with-prettier)
 
 (use-package typescript-mode
   :ensure t

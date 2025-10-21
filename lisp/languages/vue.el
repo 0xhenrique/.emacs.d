@@ -6,10 +6,6 @@
   "Jump to a specific SECTION in a Vue file."
   (re-search-forward (concat "^<" section ">") nil t))
 
-;(define-key vue-mode-map (kbd "C-c C-j t") (lambda () (interactive) (vue/jump-to-section "template")))
-;(define-key vue-mode-map (kbd "C-c C-j s") (lambda () (interactive) (vue/jump-to-section "script")))
-;(define-key vue-mode-map (kbd "C-c C-j c") (lambda () (interactive) (vue/jump-to-section "style")))
-
 (use-package vue-mode
   :ensure t
   :config

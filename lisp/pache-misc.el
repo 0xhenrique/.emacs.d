@@ -97,6 +97,7 @@
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode 1)
 (blink-cursor-mode -1)
+(doom-modeline-mode 1)
 
 (provide 'pache-misc)
 ;;; pache-misc.el ends here

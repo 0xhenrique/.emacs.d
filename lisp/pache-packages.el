@@ -89,6 +89,24 @@
     (setq-default flycheck-disabled-checkers 
                   '(emacs-lisp-checkdoc))))
 
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :config
+  (setq lsp-keymap-prefix "C-c l")
+  (when pache/windows-p
+    (setq lsp-idle-delay 0.500
+          lsp-log-io nil
+          lsp-enable-file-watchers nil
+          lsp-signature-render-documentation nil)))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-sideline-enable t
+        lsp-ui-sideline-show-hover nil))
+
 (use-package eglot
   :ensure t
   :defer t
