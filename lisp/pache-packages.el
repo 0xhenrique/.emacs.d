@@ -6,18 +6,22 @@
 (use-package markdown-mode :ensure t :defer t)
 (use-package yaml-mode :ensure t :defer t)
 
-(when pache/linux-p
-  (use-package git-gutter
-    :ensure t
-    :hook (prog-mode . git-gutter-mode)))
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)))
 
-(when pache/windows-p
-  (use-package diff-hl
-    :ensure t
-    :config
-    (setq diff-hl-draw-borders nil)
-    (setq diff-hl-flydiff-mode nil)  ; Disable live diff
-    :hook (prog-mode . diff-hl-mode)))
+(use-package drag-stuff
+  :ensure t
+  :config
+  (drag-stuff-global-mode 1))
+
+(use-package diff-hl
+  :ensure t
+  :config
+  (setq diff-hl-draw-borders nil)
+  (setq diff-hl-flydiff-mode nil)
+  :hook (prog-mode . diff-hl-mode))
 
 (use-package magit
   :ensure t
@@ -26,7 +30,7 @@
   (when pache/windows-p
     (setq magit-refresh-status-buffer nil)
     (setq magit-diff-refine-hunk nil)
-    (setq magit-revision-show-gravatars nil)))  ; Disable gravatars
+    (setq magit-revision-show-gravatars nil)))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -60,52 +64,9 @@
   (global-corfu-mode)
   :config
   (setq corfu-auto t
-        corfu-auto-delay (if pache/windows-p 0.3 0.1)  ; slower on Windows
         corfu-auto-prefix 2
         corfu-cycle t
-        corfu-preselect 'prompt)
-  (when pache/windows-p
-    (setq corfu-count 10)))  ; show fewer candidates
-
-(use-package cape
-  :ensure t
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev))
-
-(use-package flycheck
-  :ensure t
-  :defer t
-  :hook (prog-mode . flycheck-mode)
-  :config
-  (setq flycheck-check-syntax-automatically 
-        (if pache/windows-p
-            '(save mode-enabled)  ; Only on save for Windows
-            '(save idle-change mode-enabled)))
-  (setq flycheck-idle-change-delay 
-        (if pache/windows-p 4.0 1.5))
-  ;; Disable checkers that are slow on Windows
-  (when pache/windows-p
-    (setq-default flycheck-disabled-checkers 
-                  '(emacs-lisp-checkdoc))))
-
-(use-package lsp-mode
-  :ensure t
-  :commands lsp
-  :config
-  (setq lsp-keymap-prefix "C-c l")
-  (when pache/windows-p
-    (setq lsp-idle-delay 0.500
-          lsp-log-io nil
-          lsp-enable-file-watchers nil
-          lsp-signature-render-documentation nil)))
-
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-sideline-enable t
-        lsp-ui-sideline-show-hover nil))
+        corfu-preselect 'prompt))
 
 (use-package eglot
   :ensure t
@@ -164,6 +125,66 @@
   :ensure t
   :init
   (marginalia-mode))
+
+(use-package flymake
+  :bind (:map flymake-mode-map
+              ("C-c ! n" . flymake-goto-next-error)
+              ("C-c ! p" . flymake-goto-prev-error)
+              ("C-c ! l" . flymake-show-buffer-diagnostics)))
+
+(use-package embark
+  :ensure t
+  :bind
+  (("C-." . embark-act)
+   ("C-;" . embark-dwim)
+   ("C-h B" . embark-bindings))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command))
+
+(use-package embark-consult
+  :ensure t
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package geiser
+  :ensure t
+  :defer t)
+
+(use-package geiser-guile
+  :ensure t
+  :defer t
+  :config
+  (setq geiser-guile-binary "guile"))
+
+(use-package dired
+  :config
+  (setq dired-listing-switches "-alh --group-directories-first"
+        dired-dwim-target t)
+  (when pache/linux-p
+    (setq dired-guess-shell-alist-user
+          '(("\\.pdf\\'" "zathura")
+            ("\\.mkv\\'" "mpv")
+            ("\\.mp3\\'" "mpv")
+            ("\\.flac\\'" "mpv")
+            ("\\.mp4\\'" "mpv")))))
+
+(use-package all-the-icons-dired
+  :ensure t
+  :when pache/linux-p
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :when pache/linux-p
+  :config
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "NPM_CONFIG_PREFIX"))
+  (exec-path-from-shell-initialize))
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
 (provide 'pache-packages)
 ;;; pache-packages.el ends here

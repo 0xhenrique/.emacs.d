@@ -7,20 +7,6 @@
   (interactive)
   (compile "go build ./..."))
 
-(defun pache/go-format ()
-  "Format the current Go buffer with gofmt."
-  (interactive)
-  (when (eq major-mode 'go-mode)
-    (save-buffer)
-    (shell-command (format "gofmt -w %s" (shell-quote-argument (buffer-file-name))))
-    (revert-buffer t t t)))
-
-(defun pache/go-lint ()
-  "Run `golangci-lint run` on the current file."
-  (interactive)
-  (let ((file (shell-quote-argument (buffer-file-name))))
-    (compile (format "golangci-lint run %s" file))))
-
 (defun pache/go-run ()
   "Run `go run .` in the project root."
   (interactive)
@@ -33,14 +19,14 @@
 
 (use-package go-mode
   :ensure t
-  :mode "\\.go\\'"
   :hook (go-mode . eglot-ensure)
   :bind (:map go-mode-map
-              ("C-c C-b" . pache/go-build)
-              ("C-c C-f" . pache/go-format)
-              ("C-c C-l" . pache/go-lint)
-              ("C-c C-r" . pache/go-run)
-              ("C-c C-t" . pache/go-test)))
+              ("C-c C-b" . (lambda () (interactive) (compile "go build ./...")))
+              ("C-c C-t" . (lambda () (interactive) (compile "go test ./...")))
+              ("C-c C-r" . (lambda () (interactive) (compile "go run .")))))
+
+(add-hook 'go-mode-hook 
+          (lambda () (setq indent-tabs-mode t)))
 
 (provide 'go)
 ;;; go.el ends here

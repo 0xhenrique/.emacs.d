@@ -10,7 +10,7 @@
 ;; Modules for Pachemacs
 ;(load "~/.emacs.d/lisp/pache-irc.el")
 (load "~/.emacs.d/lisp/pache-misc.el")
-;(load "~/.emacs.d/lisp/pache-exwm.el")
+(load "~/.emacs.d/lisp/pache-exwm.el")
 (load "~/.emacs.d/lisp/pache-keys.el")
 (load "~/.emacs.d/lisp/pache-utils.el")
 ;(load "~/.emacs.d/lisp/pache-blog.el")

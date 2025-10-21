@@ -116,6 +116,12 @@
   "Hibernate the system using shell command."
   (start-process-shell-command "hibernate" nil "sudo sh -c 'echo disk > /sys/power/state'"))
 
+(defun pache/make-project-command (command)
+  "Create an interactive compile function for COMMAND."
+  (lambda ()
+    (interactive)
+    (compile command)))
+
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command
 ;; "deluged" nil "deluged")

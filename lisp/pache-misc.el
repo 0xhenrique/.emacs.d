@@ -2,13 +2,8 @@
 ;;; Code:
 ;;; Commentary:
 (dolist (pkg '(editorconfig
-			   ;ivy
 			   sudo-edit
-			   ;counsel
-			   multiple-cursors
-			   drag-stuff
 			   pache-dark-theme
-			   ;; Programming
 			   json-mode
 			   elixir-mode
 			   rust-mode
@@ -18,16 +13,14 @@
   (unless (package-installed-p pkg)
 	(package-install pkg)))
 
-(load-theme 'catppuccin :no-confirm)
-(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-(add-to-list 'default-frame-alist '(alpha 100 0))
-(setq frame-alpha-lower-limit 0)
+(load-theme 'pache-dark :noconfirm)
 (set-frame-font "Aporetic Sans Mono-12" nil t)
+(set-frame-parameter nil 'alpha-background 90)
 
 (setq-default tab-width 4
 			  standard-indent 4
 			  electric-indent-inhibit t
-			  indent-tabs-mode t)
+			  indent-tabs-mode nil)
 
 (setq read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -53,6 +46,7 @@
                   (let ((buffer-file-name (buffer-name)))
                     (set-auto-mode)))))
 
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 (add-to-list 'load-path
              "~/.emacs.d/plugins/yasnippet")
 
@@ -84,16 +78,11 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(multiple-cursors-mode 1)
 (which-key-mode 1)
-;(counsel-mode 1)
-;(ivy-mode 1)
 (save-place-mode 1)
-(flymake-mode 0)
 (savehist-mode 1)
 (recentf-mode 1)
 (editorconfig-mode 1)
-(drag-stuff-global-mode 1)
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode 1)
 (blink-cursor-mode -1)

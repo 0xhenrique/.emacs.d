@@ -31,5 +31,16 @@
               ("C-c C-r" . pache/leiningen-run)
               ("C-c C-t" . pache/leiningen-test)))
 
+(use-package cider
+  :ensure t
+  :defer t
+  :config
+  (setq cider-repl-display-help-banner nil
+        cider-repl-pop-to-buffer-on-connect 'display-only)
+  :bind (:map clojure-mode-map
+              ("C-c C-c" . cider-eval-defun-at-point)
+              ("C-c C-k" . cider-load-buffer)
+              ("C-c C-z" . cider-switch-to-repl-buffer)))
+
 (provide 'clojure)
 ;;; clojure.el ends here
