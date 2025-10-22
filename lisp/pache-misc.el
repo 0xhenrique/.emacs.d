@@ -5,17 +5,13 @@
 			   sudo-edit
 			   pache-dark-theme
 			   json-mode
-			   elixir-mode
-			   rust-mode
-			   typescript-mode
-			   vue-mode
 			   flycheck))
   (unless (package-installed-p pkg)
 	(package-install pkg)))
 
 (load-theme 'pache-dark :noconfirm)
 (set-frame-font "Aporetic Sans Mono-12" nil t)
-(set-frame-parameter nil 'alpha-background 90)
+(set-frame-parameter nil 'alpha-background 92)
 
 (setq-default tab-width 4
 			  standard-indent 4
@@ -46,7 +42,7 @@
                   (let ((buffer-file-name (buffer-name)))
                     (set-auto-mode)))))
 
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+(add-to-list 'default-frame-alist '(alpha-background . 92))
 (add-to-list 'load-path
              "~/.emacs.d/plugins/yasnippet")
 
