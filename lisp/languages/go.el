@@ -19,7 +19,6 @@
 
 (use-package go-mode
   :ensure t
-  :hook (go-mode . eglot-ensure)
   :bind (:map go-mode-map
               ("C-c C-b" . (lambda () (interactive) (compile "go build ./...")))
               ("C-c C-t" . (lambda () (interactive) (compile "go test ./...")))

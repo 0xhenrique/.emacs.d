@@ -21,7 +21,6 @@
 (use-package typescript-mode
   :ensure t
   :mode ("\\.ts\\'" "\\.tsx\\'")
-  :hook (typescript-mode . eglot-ensure)
   :bind (:map typescript-mode-map
               ("C-c C-b" . pache/typescript-compile)
               ("C-c C-l" . pache/typescript-lint)

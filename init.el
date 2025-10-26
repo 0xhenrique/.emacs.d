@@ -8,19 +8,11 @@
 (package-initialize)
 
 ;; Modules for Pachemacs
-;(load "~/.emacs.d/lisp/pache-irc.el")
 (load "~/.emacs.d/lisp/pache-misc.el")
-(load "~/.emacs.d/lisp/pache-exwm.el")
 (load "~/.emacs.d/lisp/pache-keys.el")
 (load "~/.emacs.d/lisp/pache-utils.el")
-;(load "~/.emacs.d/lisp/pache-blog.el")
 (load "~/.emacs.d/lisp/pache-platform.el")
 (load "~/.emacs.d/lisp/pache-packages.el")
-
-;(load-file "~/workspace/0xhenrique/esb/esb.el")
-;(setq epa-pinentry-mode 'loopback)
-;(setq epa-file-select-keys nil)
-;(setq esb-bookmarks-file "~/workspace/0xhenrique/bookmarks/bookmarks.gpg")
 
 (setq confirm-kill-emacs #'yes-or-no-p
       window-resize-pixelwise t

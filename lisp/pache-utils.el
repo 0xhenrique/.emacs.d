@@ -122,6 +122,18 @@
     (interactive)
     (compile command)))
 
+(defun pache/duplicate-line ()
+  "Duplicate the current line."
+  (interactive)
+  (let ((column (- (point) (point-at-bol)))
+        (line (let ((s (thing-at-point 'line t)))
+                (if s (string-remove-suffix "\n" s) ""))))
+    (move-end-of-line 1)
+    (newline)
+    (insert line)
+    (move-beginning-of-line 1)
+    (forward-char column)))
+
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command
 ;; "deluged" nil "deluged")

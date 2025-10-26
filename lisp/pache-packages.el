@@ -5,6 +5,11 @@
 (use-package which-key :ensure t :defer t)
 (use-package markdown-mode :ensure t :defer t)
 (use-package yaml-mode :ensure t :defer t)
+(use-package editorconfig :ensure t :config (editorconfig-mode 1))
+(use-package sudo-edit :ensure t :defer t)
+(use-package pache-dark-theme :ensure t)
+(use-package json-mode :ensure t :defer t)
+(use-package flycheck :ensure t :defer t)
 
 (use-package multiple-cursors
   :ensure t
@@ -67,17 +72,6 @@
         corfu-auto-prefix 2
         corfu-cycle t
         corfu-preselect 'prompt))
-
-(use-package eglot
-  :ensure t
-  :defer t
-  :config
-  (setq eglot-events-buffer-size 0)
-  (setq eglot-sync-connect nil)
-  (when pache/windows-p
-    (setq eglot-send-changes-idle-time 1.0)
-    (setq eglot-ignored-server-capabilities 
-          '(:inlayHintProvider))))
 
 (use-package vertico
   :ensure t
@@ -159,10 +153,15 @@
 (use-package dired
   :config
   (setq dired-listing-switches "-alh --group-directories-first"
+        hl-line-mode t
         dired-dwim-target t)
   (when pache/linux-p
     (setq dired-guess-shell-alist-user
           '(("\\.pdf\\'" "zathura")
+            ("\\.jpg\\'" "feh")
+            ("\\.png\\'" "feh")
+            ("\\.jpeg\\'" "feh")
+            ("\\.webp\\'" "feh")
             ("\\.mkv\\'" "mpv")
             ("\\.mp3\\'" "mpv")
             ("\\.flac\\'" "mpv")
@@ -186,15 +185,50 @@
   (global-undo-tree-mode)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (vue-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
+(use-package eglot
+  :ensure t
+  :defer t
+  :config
+  (setq eglot-events-buffer-size 0
+        eglot-sync-connect nil
+        eglot-autoshutdown t)
+  (when pache/windows-p
+    (setq eglot-send-changes-idle-time 1.0
+          eglot-ignored-server-capabilities 
+          '(:inlayHintProvider)))
+  :hook ((typescript-mode . eglot-ensure)
+         (go-mode . eglot-ensure)
+         (rust-mode . eglot-ensure)
+         (python-mode . eglot-ensure)
+         (js-mode . eglot-ensure)))
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package tree-sitter
+  :ensure t
+  :config
+  (global-tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :init
+  (setq lsp-keymap-prefix "C-c l"
+        lsp-enable-file-watchers nil
+        lsp-signature-auto-activate nil
+        lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil)
+  :hook ((vue-mode . lsp-deferred))
+  :config
+  (when pache/windows-p
+    (setq lsp-idle-delay 1.0
+          lsp-log-io nil)))
+
+(use-package lsp-ui 
+  :ensure t
+  :commands lsp-ui-mode
+  :config
+  (setq ; lsp-ui-doc-enable nil
+        lsp-ui-sideline-enable nil))
 
 (provide 'pache-packages)
 ;;; pache-packages.el ends here

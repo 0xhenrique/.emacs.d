@@ -1,17 +1,11 @@
 ;;; pache-misc.el --- Everything that doesn't fit the other modules -*- lexical-binding: t -*-
 ;;; Code:
 ;;; Commentary:
-(dolist (pkg '(editorconfig
-			   sudo-edit
-			   pache-dark-theme
-			   json-mode
-			   flycheck))
-  (unless (package-installed-p pkg)
-	(package-install pkg)))
 
-(load-theme 'pache-dark :noconfirm)
+(setq catppuccin-flavor 'mocha)
+(load-theme 'catppuccin :no-confirm)
 (set-frame-font "Aporetic Sans Mono-12" nil t)
-(set-frame-parameter nil 'alpha-background 92)
+(set-frame-parameter nil 'alpha-background 100)
 
 (setq-default tab-width 4
 			  standard-indent 4
@@ -20,6 +14,7 @@
 
 (setq read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t
+      read-buffer-completion-ignore-case t
       completion-ignore-case t
 	  backward-delete-char-untabify-method 'nil
       indent-line-function 'insert-tab
@@ -63,13 +58,13 @@
 ;; Hooks ;;
 ;;;;;;;;;;;
 (add-hook 'prog-mode-hook 'yas-global-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;;;;;;;;;;;
 ;; Modes ;;
 ;;;;;;;;;;;
 (electric-pair-mode 1)
 (column-number-mode 1)
-(global-display-line-numbers-mode 0)
 (global-hl-line-mode 1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -79,10 +74,8 @@
 (savehist-mode 1)
 (recentf-mode 1)
 (editorconfig-mode 1)
-(global-display-line-numbers-mode 1)
-(global-visual-line-mode 1)
 (blink-cursor-mode -1)
-(doom-modeline-mode 1)
+(global-auto-revert-mode 1)
 
 (provide 'pache-misc)
 ;;; pache-misc.el ends here

@@ -2,6 +2,18 @@
 ;;; Code:
 ;;; Commentary:
 
+;;;;;;;;;;;;;;;;;;;;;;
+;; ESB
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c e s") 'esb-select-bookmark)
+(global-set-key (kbd "C-c e a") 'esb-add-bookmark)
+(global-set-key (kbd "C-c e d") 'esb-delete-bookmark)
+(global-set-key (kbd "C-c e l") 'esb-list-bookmarks)
+(global-set-key (kbd "C-c e e") 'esb-edit-bookmark)
+(global-set-key (kbd "C-c e r") 'esb-reload-bookmarks)
+(global-set-key (kbd "C-c e i") 'esb-initialize)
+(global-set-key (kbd "C-c e f") 'esb-flush-cache)
+
 ;; Unbind default keys
 (global-unset-key (kbd "C-x <left>"))
 (global-unset-key (kbd "C-x <right>"))
@@ -14,42 +26,120 @@
 (global-set-key (kbd "C-x <up>")    'windmove-up)
 (global-set-key (kbd "C-x <down>")  'windmove-down)
 
-;; ESB
-(global-set-key (kbd "C-c e s") 'esb-select-bookmark)
-(global-set-key (kbd "C-c e a") 'esb-add-bookmark)
-(global-set-key (kbd "C-c e d") 'esb-delete-bookmark)
-(global-set-key (kbd "C-c e l") 'esb-list-bookmarks)
-(global-set-key (kbd "C-c e e") 'esb-edit-bookmark)
-(global-set-key (kbd "C-c e r") 'esb-reload-bookmarks)
-(global-set-key (kbd "C-c e i") 'esb-initialize)
-(global-set-key (kbd "C-c e f") 'esb-flush-cache)
-
-;; Other
+;;;;;;;;;;;;;;;;;;;;;;
+;; Search & Navigation
+;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-x C-f") 'find-file)
-(global-set-key (kbd "C-x p w") 'consult-ripgrep)
 (global-set-key (kbd "C-x b") 'consult-buffer)
 (global-set-key (kbd "C-x /") 'consult-line)
 (global-set-key (kbd "C-x C-/") 'pache/swiper-isearch-thing-at-point)
-;(global-set-key (kbd "M-y") 'counsel-yank-pop)
-;(global-set-key (kbd "M-x") 'counsel-M-x)
-;(global-set-key (kbd "C-x C-/") 'pache/swiper-isearch-thing-at-point)
-;(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;(global-set-key (kbd "C-x p f") 'project-find-file)
-;(global-set-key (kbd "C-x p w") 'counsel-rg)
-;(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
-;(global-set-key (kbd "C-x /") 'swiper-isearch)
 
-;; Unused
-;(global-set-key (kbd "C-c c") 'counsel-compile)
-;(global-set-key (kbd "C-c g") 'counsel-git)
-;(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;(global-set-key (kbd "C-c L") 'counsel-git-log)
-;(global-set-key (kbd "C-c m") 'counsel-linux-app)
-;(global-set-key (kbd "C-c n") 'counsel-fzf)
-;(global-set-key (kbd "C-x l") 'counsel-locate)
-;(global-set-key (kbd "C-c J") 'counsel-file-jump)
-;(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-;(global-set-key (kbd "C-c w") 'counsel-wmctrl)
+;; Project-wide search
+(global-set-key (kbd "C-x p w") 'consult-ripgrep)
+(global-set-key (kbd "C-x p f") 'project-find-file)
+(global-set-key (kbd "C-x p b") 'consult-project-buffer)
+
+;; Imenu for quick function navigation
+(global-set-key (kbd "C-c i") 'consult-imenu)
+(global-set-key (kbd "C-c I") 'consult-imenu-multi)
+
+;; Jump to definition/references
+(global-set-key (kbd "M-.") 'xref-find-definitions)
+(global-set-key (kbd "M-,") 'xref-pop-marker-stack)
+(global-set-key (kbd "M-?") 'xref-find-references)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Project Management
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-x p p") 'project-switch-project)
+(global-set-key (kbd "C-x p c") 'project-compile)
+(global-set-key (kbd "C-x p s") 'project-shell)
+(global-set-key (kbd "C-x p k") 'project-kill-buffers)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Git/Magit
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch)
+(global-set-key (kbd "C-c g b") 'magit-blame)
+(global-set-key (kbd "C-c g l") 'magit-log-buffer-file)
+(global-set-key (kbd "C-c g f") 'magit-file-dispatch)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Code Navigation & Editing
+;;;;;;;;;;;;;;;;;;;;;;
+;; Multiple cursors
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+;; Comment/uncomment
+(global-set-key (kbd "C-c ;") 'comment-line)
+(global-set-key (kbd "C-c C-;") 'comment-or-uncomment-region)
+
+;; Move lines up/down
+(global-set-key (kbd "M-<up>") 'drag-stuff-up)
+(global-set-key (kbd "M-<down>") 'drag-stuff-down)
+
+;; Duplicate line
+(global-set-key (kbd "C-c d") 'pache/duplicate-line)
+
+;; Format buffer
+(global-set-key (kbd "C-c f") 'format-all-buffer)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Compilation & Testing
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c c") 'compile)
+(global-set-key (kbd "C-c r") 'recompile)
+(global-set-key (kbd "C-c C-k") 'kill-compilation)
+
+;; Quick access to compilation buffer
+(global-set-key (kbd "C-c C-c") 'next-error)
+(global-set-key (kbd "C-c C-p") 'previous-error)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; LSP/Eglot specific
+;;;;;;;;;;;;;;;;;;;;;;
+(with-eval-after-load 'eglot
+  (define-key eglot-mode-map (kbd "C-c l a") 'eglot-code-actions)
+  (define-key eglot-mode-map (kbd "C-c l r") 'eglot-rename)
+  (define-key eglot-mode-map (kbd "C-c l f") 'eglot-format)
+  (define-key eglot-mode-map (kbd "C-c l o") 'eglot-code-action-organize-imports)
+  (define-key eglot-mode-map (kbd "C-c l h") 'eldoc)
+  (define-key eglot-mode-map (kbd "C-c l d") 'flymake-show-buffer-diagnostics)
+  (define-key eglot-mode-map (kbd "C-c l n") 'flymake-goto-next-error)
+  (define-key eglot-mode-map (kbd "C-c l p") 'flymake-goto-prev-error))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Shell/Terminal
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c s") 'pache/create-shell)
+(global-set-key (kbd "C-c t") 'ansi-term)
+
+;; If using vterm
+;; (global-set-key (kbd "C-c t") 'vterm)
+;; (global-set-key (kbd "C-c T") 'vterm-other-window)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Dired
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-x d") 'dired-jump)
+(global-set-key (kbd "C-x C-d") 'dired)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Org Mode
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Misc Utilities
+;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "M-s o") 'consult-line-multi)
+(global-set-key (kbd "C-x u") 'undo-tree-visualize)
 
 (provide 'pache-keys)
 ;;; pache-keys.el ends here
