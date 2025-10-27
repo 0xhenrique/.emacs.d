@@ -3,7 +3,7 @@
 ;;; Commentary:
 
 (set-frame-font "Iosevka Term-12" nil t)
-(set-frame-parameter nil 'alpha-background 90)
+(set-frame-parameter nil 'alpha 100)
 
 (setq-default tab-width 4
 			  standard-indent 4
@@ -35,7 +35,6 @@
                   (let ((buffer-file-name (buffer-name)))
                     (set-auto-mode)))))
 
-(add-to-list 'default-frame-alist '(alpha-background . 90))
 (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
 
 (org-babel-do-load-languages

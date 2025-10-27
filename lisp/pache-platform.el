@@ -56,4 +56,5 @@
     ))
 
 (provide 'pache-platform)
+(pache/load-linux-config)
 ;;; pache-platform.el ends here
