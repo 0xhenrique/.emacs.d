@@ -10,6 +10,7 @@
 (use-package pache-dark-theme :ensure t)
 (use-package json-mode :ensure t :defer t)
 (use-package flycheck :ensure t :defer t)
+;(use-package doom-modeline :ensure t :defer t :init (doom-modeline-mode 1))
 
 (use-package multiple-cursors
   :ensure t
@@ -229,6 +230,13 @@
   :config
   (setq ; lsp-ui-doc-enable nil
         lsp-ui-sideline-enable nil))
+
+(use-package ef-themes
+  :ensure t
+  :config
+  (setq modus-themes-mixed-fonts t)
+  (setq modus-themes-italic-constructs t)
+  (load-theme 'ef-dark :noconfirm))
 
 (provide 'pache-packages)
 ;;; pache-packages.el ends here

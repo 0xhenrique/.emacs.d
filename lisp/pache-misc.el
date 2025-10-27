@@ -2,10 +2,8 @@
 ;;; Code:
 ;;; Commentary:
 
-(setq catppuccin-flavor 'mocha)
-(load-theme 'catppuccin :no-confirm)
-(set-frame-font "Aporetic Sans Mono-12" nil t)
-(set-frame-parameter nil 'alpha-background 100)
+(set-frame-font "Iosevka Term-12" nil t)
+(set-frame-parameter nil 'alpha-background 90)
 
 (setq-default tab-width 4
 			  standard-indent 4
@@ -37,9 +35,8 @@
                   (let ((buffer-file-name (buffer-name)))
                     (set-auto-mode)))))
 
-(add-to-list 'default-frame-alist '(alpha-background . 92))
-(add-to-list 'load-path
-             "~/.emacs.d/plugins/yasnippet")
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -47,7 +44,7 @@
    (scheme . t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Import programming languages specifics ;;
+;; Programming languages specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/lisp/languages/go.el")
 (load "~/.emacs.d/lisp/languages/typescript.el")
@@ -55,13 +52,13 @@
 ;(load "~/.emacs.d/lisp/languages/rust.el")
 
 ;;;;;;;;;;;
-;; Hooks ;;
+;; Hooks
 ;;;;;;;;;;;
 (add-hook 'prog-mode-hook 'yas-global-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;;;;;;;;;;;
-;; Modes ;;
+;; Modes
 ;;;;;;;;;;;
 (electric-pair-mode 1)
 (column-number-mode 1)
