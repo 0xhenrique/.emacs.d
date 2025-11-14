@@ -19,6 +19,7 @@
 (global-unset-key (kbd "C-x <right>"))
 (global-unset-key (kbd "C-x <up>"))
 (global-unset-key (kbd "C-x <down>"))
+(global-unset-key (kbd "C-x C-r"))
 
 ;; Windows/Panes/Frames
 (global-set-key (kbd "C-x <left>")  'windmove-left)
@@ -33,6 +34,7 @@
 (global-set-key (kbd "C-x b") 'consult-buffer)
 (global-set-key (kbd "C-x /") 'consult-line)
 (global-set-key (kbd "C-x C-/") 'pache/swiper-isearch-thing-at-point)
+(global-set-key (kbd "C-x C-r") 'pache/rgrep-selected)
 
 ;; Project-wide search
 (global-set-key (kbd "C-x p w") 'consult-ripgrep)

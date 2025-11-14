@@ -3,7 +3,8 @@
 ;;; Commentary:
 
 (set-frame-font "Iosevka Term-12" nil t)
-(set-frame-parameter nil 'alpha 100)
+(add-to-list 'default-frame-alist '(alpha-background . 0.9))
+(set-frame-parameter nil 'alpha-background 90)
 
 (setq-default tab-width 4
 			  standard-indent 4

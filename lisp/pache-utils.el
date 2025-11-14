@@ -4,10 +4,11 @@
 
 ;; Set keyboard layout switch (US and ABNT2)
 (start-process-shell-command
- "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
+  "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
+
 ;; Transparency
-(start-process-shell-command
- "picom" nil "picom")
+;; (start-process-shell-command
+;;  "picom" nil "picom")
 
 (defun pache/my-consult-bookmark ()
   "Select a bookmark using `completing-read` and copy it to the clipboard."
@@ -81,8 +82,8 @@
 ; "xinput" nil "xinput set-prop 12 'libinput Scroll Method Enabled' 0 0 1")
 
 ;; Disable top buttons in Kensington Expert (2 and 8), keep bottom buttons (1 and 3)
-(start-process-shell-command
- "xinput" nil "xinput set-button-map 12 1 0 3 0 0 0 0 0")
+;; (start-process-shell-command
+;;  "xinput" nil "xinput set-button-map 12 1 0 3 0 0 0 0 0")
 
 
 (defun pache/screenshot-with-flameshot ()
@@ -133,6 +134,13 @@
     (insert line)
     (move-beginning-of-line 1)
     (forward-char column)))
+
+;;; Stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
+(defun pache/rgrep-selected (beg end)
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (point-min) (point-min))))
+  (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
 
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command

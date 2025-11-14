@@ -226,17 +226,14 @@
 
 (use-package lsp-ui 
   :ensure t
-  :commands lsp-ui-mode
-  :config
-  (setq ; lsp-ui-doc-enable nil
-        lsp-ui-sideline-enable nil))
+  :commands lsp-ui-mode)
 
 (use-package ef-themes
   :ensure t
   :config
   (setq modus-themes-mixed-fonts t)
   (setq modus-themes-italic-constructs t)
-  (load-theme 'ef-dark :noconfirm))
+  (load-theme 'pache-dark :noconfirm))
 
 (provide 'pache-packages)
 ;;; pache-packages.el ends here

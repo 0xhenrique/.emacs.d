@@ -17,7 +17,7 @@
 
 ;; Set wallpaper
 (start-process-shell-command
- "feh" nil "feh --bg-fill ~/Pictures/papes/fate/889034.png")
+ "feh" nil "feh --bg-fill ~/Pictures/papes/gruvbox/p2oydeg58dca1.png")
 
 ;; Start picom
 ;(start-process-shell-command
