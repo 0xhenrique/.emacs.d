@@ -228,6 +228,11 @@
   :ensure t
   :commands lsp-ui-mode)
 
+(use-package envrc
+  :ensure t
+  :config
+  (envrc-global-mode))
+
 (use-package ef-themes
   :ensure t
   :config

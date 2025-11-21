@@ -19,7 +19,7 @@
       frame-resize-pixelwise t
       auto-save-default nil
       visual-line-mode nil
-      custom-file (locate-user-emacs-file "~/workspace/dump/custom-vars.el")
+      custom-file (locate-user-emacs-file "~/.emacs.d/.custom-vars.el")
       context-menu-mode t
       scroll-step 1
       ring-bell-function 'ignore

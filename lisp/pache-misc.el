@@ -54,7 +54,7 @@
 ;;;;;;;;;;;
 ;; Hooks
 ;;;;;;;;;;;
-(add-hook 'prog-mode-hook 'yas-global-mode)
+;(add-hook 'prog-mode-hook 'yas-global-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;;;;;;;;;;;

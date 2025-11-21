@@ -79,7 +79,7 @@ recentf
 .lsp-session-v1
 .mc-lists.el
 lsp-bridge
-custom-vars.el
+.custom-vars.el
 bookmarks
 eshell
 games

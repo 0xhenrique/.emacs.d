@@ -46,13 +46,15 @@
 (defun pache/load-linux-config ()
   "Load Linux-specific configuration."
   (when pache/linux-p
-    (load "~/.emacs.d/lisp/pache-exwm.el")
+                                        ;(load "~/.emacs.d/lisp/pache-exwm.el")
     (load "~/.emacs.d/lisp/pache-blog.el")
                                         ;(load "~/.emacs.d/lisp/pache-irc.el")
                                         ;(load-file "~/workspace/0xhenrique/esb/esb.el")
                                         ;(setq epa-pinentry-mode 'loopback)
                                         ;(setq epa-file-select-keys nil)
                                         ;(setq esb-bookmarks-file "~/workspace/0xhenrique/bookmarks/bookmarks.gpg")
+    (when (daemonp)
+      (set-exec-path-from-shell-PATH))
     ))
 
 (provide 'pache-platform)
