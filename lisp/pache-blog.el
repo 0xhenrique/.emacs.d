@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; M-x org-static-blog-create-new-post~ and write the content
-;; M-x org-static-blog-publish~ and upload to your webhost
+;; M-x org-static-blog-create-new-post RET and write the content
+;; M-x org-static-blog-publish RET and upload to your webhost
 (use-package org-static-blog
   :ensure t
   :config

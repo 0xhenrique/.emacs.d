@@ -8,7 +8,7 @@
     (if (string-match-p (regexp-quote "colonq.computer") erc-session-server)
         (progn
           (setq erc-nick "0xhenrique")
-          (setq erc-user-full-name "Henrique Marques")) ;; Use real name
+          (setq erc-user-full-name "0xhenrique")) ;; Use real name
       (setq erc-nick (format "Anon%d" (random 9999)))  ;; Use random nick
       (setq erc-user-full-name (format "User%d" (random 9999)))))) ;; Use random full name
 

@@ -19,6 +19,19 @@
       indent-line-function 'insert-tab
       ivy-use-virtual-buffers t
       counsel-find-file-at-point t
+      confirm-kill-emacs #'yes-or-no-p
+      window-resize-pixelwise t
+      frame-resize-pixelwise t
+      auto-save-default nil
+      visual-line-mode nil
+      custom-file (locate-user-emacs-file "~/.emacs.d/.custom-vars.el")
+      context-menu-mode t
+      scroll-step 1
+      ring-bell-function 'ignore
+      visible-bell 1
+      inhibit-startup-screen t
+      sentence-end-double-space nil
+      backup-directory-alist `(("." . "~/.saves"))
 	  ;; UI
 	  visible-bell t
       ring-bell-function t
@@ -43,23 +56,15 @@
  '((emacs-lisp . t)
    (scheme . t)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Programming languages specifics
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "~/.emacs.d/lisp/languages/go.el")
-(load "~/.emacs.d/lisp/languages/typescript.el")
-(load "~/.emacs.d/lisp/languages/vue.el")
-;(load "~/.emacs.d/lisp/languages/rust.el")
-
-;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hooks
-;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;(add-hook 'prog-mode-hook 'yas-global-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modes
-;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (electric-pair-mode 1)
 (column-number-mode 1)
 (global-hl-line-mode 1)

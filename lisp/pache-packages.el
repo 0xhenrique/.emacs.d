@@ -11,6 +11,10 @@
 (use-package json-mode :ensure t :defer t)
 (use-package flycheck :ensure t :defer t)
 (use-package doom-modeline :ensure t :defer t :init (doom-modeline-mode 1))
+(use-package lsp-ui :ensure t :commands lsp-ui-mode)
+(use-package marginalia :ensure t :init (marginalia-mode))
+(use-package envrc :ensure t :config (envrc-global-mode))
+(use-package geiser :ensure t :defer t)
 
 (use-package multiple-cursors
   :ensure t
@@ -116,11 +120,6 @@
   :config
   (setq consult-narrow-key "<"))
 
-(use-package marginalia
-  :ensure t
-  :init
-  (marginalia-mode))
-
 (use-package flymake
   :bind (:map flymake-mode-map
               ("C-c ! n" . flymake-goto-next-error)
@@ -140,10 +139,6 @@
   :ensure t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
-
-(use-package geiser
-  :ensure t
-  :defer t)
 
 (use-package geiser-guile
   :ensure t
@@ -196,12 +191,7 @@
   (when pache/windows-p
     (setq eglot-send-changes-idle-time 1.0
           eglot-ignored-server-capabilities 
-          '(:inlayHintProvider)))
-  :hook ((typescript-mode . eglot-ensure)
-         (go-mode . eglot-ensure)
-         (rust-mode . eglot-ensure)
-         (python-mode . eglot-ensure)
-         (js-mode . eglot-ensure)))
+          '(:inlayHintProvider))))
 
 (use-package tree-sitter
   :ensure t
@@ -218,20 +208,10 @@
         lsp-signature-auto-activate nil
         lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil)
-  :hook ((vue-mode . lsp-deferred))
   :config
   (when pache/windows-p
     (setq lsp-idle-delay 1.0
           lsp-log-io nil)))
-
-(use-package lsp-ui 
-  :ensure t
-  :commands lsp-ui-mode)
-
-(use-package envrc
-  :ensure t
-  :config
-  (envrc-global-mode))
 
 (use-package ef-themes
   :ensure t
