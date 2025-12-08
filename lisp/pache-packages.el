@@ -10,11 +10,20 @@
 (use-package pache-dark-theme :ensure t)
 (use-package json-mode :ensure t :defer t)
 (use-package flycheck :ensure t :defer t)
-(use-package doom-modeline :ensure t :defer t :init (doom-modeline-mode 1))
+;(use-package doom-modeline :ensure t :defer t :init (doom-modeline-mode 1))
 (use-package lsp-ui :ensure t :commands lsp-ui-mode)
 (use-package marginalia :ensure t :init (marginalia-mode))
 (use-package envrc :ensure t :config (envrc-global-mode))
 (use-package geiser :ensure t :defer t)
+
+(use-package esb
+  :ensure t
+  :defer t
+  :config
+  (setq epa-pinentry-mode 'loopback)
+  (setq esb-bookmarks-file "~/bookmarks/bookmarks.gpg")
+  (setq epa-file-cache-passphrase-for-symmetric-encryption t)
+  (setq epa-file-select-keys nil))
 
 (use-package multiple-cursors
   :ensure t
@@ -91,6 +100,22 @@
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/workspace/0xhenrique/roam/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  (require 'org-roam-protocol))
 
 (use-package consult
   :ensure t
@@ -213,11 +238,9 @@
     (setq lsp-idle-delay 1.0
           lsp-log-io nil)))
 
-(use-package ef-themes
+(use-package pache-dark-theme
   :ensure t
   :config
-  (setq modus-themes-mixed-fonts t)
-  (setq modus-themes-italic-constructs t)
   (load-theme 'pache-dark :noconfirm))
 
 (provide 'pache-packages)

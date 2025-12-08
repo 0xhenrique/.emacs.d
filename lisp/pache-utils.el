@@ -152,6 +152,16 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
+(defun pache/my-erc-set-nick-and-full-name (&rest _args)
+  "Set a different ERC nickname and full name based on the server."
+  (when (and (boundp 'erc-session-server) erc-session-server)
+    (if (string-match-p (regexp-quote "colonq.computer") erc-session-server)
+        (progn
+          (setq erc-nick "0xhenrique")
+          (setq erc-user-full-name "0xhenrique")) ;; Use real name
+      (setq erc-nick (format "Anon%d" (random 9999)))  ;; Use random nick
+      (setq erc-user-full-name (format "User%d" (random 9999)))))) ;; Use random full name
+
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command
 ;; "deluged" nil "deluged")
