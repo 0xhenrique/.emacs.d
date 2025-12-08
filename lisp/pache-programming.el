@@ -2,10 +2,7 @@
 ;;; Code:
 ;;; Commentary:
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Typescript
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun pache/typescript-compile ()
   "Run `npm run build` in the project root."
   (interactive)
@@ -35,10 +32,7 @@
   "Jump to a specific SECTION in a Vue file."
   (re-search-forward (concat "^<" section ">") nil t))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Vue
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package vue-mode
   :ensure t
   :config
@@ -50,10 +44,7 @@
               ("C-c C-t" . pache/typescript-test))
   :hook (vue-mode . lsp-deferred))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Clojure
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun pache/leiningen-run-command (command)
   "Run a Leiningen COMMAND in the root of the current project."
   (let ((default-directory (locate-dominating-file default-directory "project.clj")))
@@ -95,10 +86,7 @@
               ("C-c C-k" . cider-load-buffer)
               ("C-c C-z" . cider-switch-to-repl-buffer)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Go
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun pache/go-build ()
   "Run `go build` in the project root."
   (interactive)
@@ -125,10 +113,7 @@
 (add-hook 'go-mode-hook 
           (lambda () (setq indent-tabs-mode t)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rust
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun pache/rust-run-clippy ()
   "Run `cargo clippy`."
   (interactive)

@@ -6,10 +6,6 @@
 (start-process-shell-command
   "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
 
-;; Transparency
-;; (start-process-shell-command
-;;  "picom" nil "picom")
-
 (defun pache/my-consult-bookmark ()
   "Select a bookmark using `completing-read` and copy it to the clipboard."
   (interactive)
@@ -101,13 +97,14 @@
   (let ((themes '(catppuccin gruvbox-dark-hard modus-vivendi)))
     (load-theme (nth (random (length themes)) themes) t)))
 
-(defun pache/swiper-isearch-thing-at-point ()
-  "Call `consult-line` with the word at point as the initial input."
+
+(defun pache/occur-thing-at-point ()
+  "Run `occur` with the word at point."
   (interactive)
   (let ((word (thing-at-point 'word t)))
     (if word
-        (consult-line word)
-      (consult-line))))
+        (occur word)
+      (call-interactively 'occur))))
 
 (defun pache/suspend-system ()
   "Suspend the system using shell command."
@@ -161,6 +158,19 @@
           (setq erc-user-full-name "0xhenrique")) ;; Use real name
       (setq erc-nick (format "Anon%d" (random 9999)))  ;; Use random nick
       (setq erc-user-full-name (format "User%d" (random 9999)))))) ;; Use random full name
+
+(defun pache/line-move-up ()
+  "Move current line up."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2))
+
+(defun pache/line-move-down ()
+  "Move current line down."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
 
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command

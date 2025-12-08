@@ -46,7 +46,7 @@
 (defun pache/load-linux-config ()
   "Load Linux-specific configuration."
   (when pache/linux-p
-    (erc-tls :server "colonq.computer" :port 26697 :nick "HenriqMarq") ;; https://www.twitch.tv/LCOLONQ
+    ;(erc-tls :server "colonq.computer" :port 26697 :nick "HenriqMarq") ;; https://www.twitch.tv/LCOLONQ
     (load "~/.emacs.d/lisp/pache-blog.el")
                                         ;(load "~/.emacs.d/lisp/pache-exwm.el")
                                         ;(load "~/.emacs.d/lisp/pache-irc.el")

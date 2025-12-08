@@ -16,12 +16,12 @@
 ; "xrandr" nil "xrandr --output eDP-1 --off --output HDMI-2 --auto")
 
 ;; Set wallpaper
-(start-process-shell-command
- "feh" nil "feh --bg-fill ~/Pictures/papes/gruvbox/p2oydeg58dca1.png")
+;(start-process-shell-command
+; "feh" nil "feh --bg-fill ~/Pictures/papes/gruvbox/p2oydeg58dca1.png")
 
 ;; Start picom
-;(start-process-shell-command
-; "picom" nil "picom")
+(start-process-shell-command
+ "picom" nil "picom")
 
 (defun pache/exwm-update-title ()
   "Used to avoid the buffers being named like librewolf<3>."
