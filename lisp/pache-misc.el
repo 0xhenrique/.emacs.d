@@ -4,7 +4,7 @@
 
 (set-frame-font "Iosevka Term-12" nil t)
 (add-to-list 'default-frame-alist '(alpha-background . 0.9))
-(set-frame-parameter nil 'alpha-background 90)
+(set-frame-parameter nil 'alpha-background 93)
 
 (setq-default indent-tabs-mode t
               tab-width 4
@@ -55,6 +55,10 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'flymake-mode)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (when (string= (buffer-name) "*scratch*")
+              (flymake-mode -1))))
 
 ;; Modes
 (electric-pair-mode 1)

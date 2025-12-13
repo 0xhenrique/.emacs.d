@@ -2,7 +2,9 @@
 ;;; Code:
 ;;; Commentary:
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Typescript
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun pache/typescript-compile ()
   "Run `npm run build` in the project root."
   (interactive)
@@ -22,7 +24,7 @@
 (use-package typescript-mode
   :ensure t
   :mode ("\\.ts\\'" "\\.tsx\\'")
-  :hook (typescript-mode . eglot-ensure)  
+  :hook (typescript-mode . eglot-ensure)
   :bind (:map typescript-mode-map
               ("C-c C-b" . pache/typescript-compile)
               ("C-c C-l" . pache/typescript-lint)
@@ -32,7 +34,9 @@
   "Jump to a specific SECTION in a Vue file."
   (re-search-forward (concat "^<" section ">") nil t))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Vue
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package vue-mode
   :ensure t
   :config
@@ -44,7 +48,9 @@
               ("C-c C-t" . pache/typescript-test))
   :hook (vue-mode . lsp-deferred))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Clojure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun pache/leiningen-run-command (command)
   "Run a Leiningen COMMAND in the root of the current project."
   (let ((default-directory (locate-dominating-file default-directory "project.clj")))
@@ -86,7 +92,9 @@
               ("C-c C-k" . cider-load-buffer)
               ("C-c C-z" . cider-switch-to-repl-buffer)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Go
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun pache/go-build ()
   "Run `go build` in the project root."
   (interactive)
@@ -110,10 +118,12 @@
               ("C-c C-t" . (lambda () (interactive) (compile "go test ./...")))
               ("C-c C-r" . (lambda () (interactive) (compile "go run .")))))
 
-(add-hook 'go-mode-hook 
+(add-hook 'go-mode-hook
           (lambda () (setq indent-tabs-mode t)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rust
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun pache/rust-run-clippy ()
   "Run `cargo clippy`."
   (interactive)
@@ -134,6 +144,41 @@
 	      ("C-c C-l" . 'pache/rust-run-clippy)
 	      ("C-c C-r" . 'pache/rust-run)
 	      ("C-c C-t" . 'pache/rust-test)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; C/C++
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun pache/cpp-build ()
+  "Compile the current C/C++ project using `make`."
+  (interactive)
+  (compile "make -k"))
+
+(defun pache/cpp-run ()
+  "Run the compiled C/C++ binary (assumes `a.out`)."
+  (interactive)
+  (compile "./a.out"))
+
+(defun pache/cpp-test ()
+  "Run test for the C/C++ project (assumes `make test`)."
+  (interactive)
+  (compile "make test"))
+
+(defun pache/cpp-compile-file ()
+  "Compile only the current file with g++."
+  (interactive)
+  (let ((file (shell-quote-argument (buffer-file-name))))
+    (compile (format "g++ -Wall -O2 %s -o %s.out"
+                     file (file-name-sans-extension file)))))
+
+(use-package cc-mode
+  :ensure nil
+  :hook ((c-mode . eglot-ensure)
+         (c++-mode . eglot-ensure))
+  :bind (:map c-mode-base-map
+              ("C-c C-b" . pache/cpp-build)
+              ("C-c C-r" . pache/cpp-run)
+              ("C-c C-t" . pache/cpp-test)
+              ("C-c C-c" . pache/cpp-compile-file)))
 
 (provide 'pache-programming)
 ;;; pache-programming.el ends here
