@@ -25,13 +25,13 @@
 
 ;; Search & Navigation
 (global-set-key (kbd "C-x C-f") 'find-file)
-(global-set-key (kbd "C-x b") 'switch-to-buffer)
-(global-set-key (kbd "C-x /") 'occur)
+(global-set-key (kbd "C-x b") 'consult-buffer)
+(global-set-key (kbd "C-x /") 'consult-line)
 (global-set-key (kbd "C-x C-/") 'pache/occur-thing-at-point)
 (global-set-key (kbd "C-x C-r") 'pache/rgrep-selected)
 
 ;; Project-wide search
-(global-set-key (kbd "C-x p w") 'project-find-regexp)
+(global-set-key (kbd "C-x p w") 'consult-ripgrep)
 (global-set-key (kbd "C-x p f") 'project-find-file)
 
 ;; Jump to definition/references

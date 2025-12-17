@@ -97,14 +97,13 @@
   (let ((themes '(catppuccin gruvbox-dark-hard modus-vivendi)))
     (load-theme (nth (random (length themes)) themes) t)))
 
-
 (defun pache/occur-thing-at-point ()
   "Run `occur` with the word at point."
   (interactive)
   (let ((word (thing-at-point 'word t)))
     (if word
-        (occur word)
-      (call-interactively 'occur))))
+        (consult-line word)
+      (consult-line))))
 
 (defun pache/suspend-system ()
   "Suspend the system using shell command."

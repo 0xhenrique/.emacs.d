@@ -2,9 +2,9 @@
 ;;; Code:
 ;;; Commentary:
 
-(set-frame-font "Iosevka Term-12" nil t)
-(add-to-list 'default-frame-alist '(alpha-background . 0.9))
-(set-frame-parameter nil 'alpha-background 93)
+(set-frame-font "Unifont-12" nil t)
+(add-to-list 'default-frame-alist '(alpha . 0.95))
+(set-frame-parameter nil 'alpha 95)
 
 (setq-default indent-tabs-mode t
               tab-width 4
