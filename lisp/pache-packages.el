@@ -7,7 +7,7 @@
 (use-package which-key :ensure t :defer t)
 (use-package markdown-mode :ensure t :defer t)
 (use-package sudo-edit :ensure t :defer t)
-(use-package pache-dark-theme :ensure t :config (load-theme 'modus-vivendi :noconfirm))
+(use-package pache-dark-theme :ensure t :config (load-theme 'pache-dark :noconfirm))
 (use-package envrc :ensure t :config (envrc-global-mode))
 (use-package geiser :ensure t :defer t)
 

@@ -12,7 +12,7 @@
 	 "b33955472cb61a721c59c705afda11fea906756d38b3c2eba61698f4e3f82897"
 	 default))
  '(package-selected-packages
-   '(acme-theme cider company consult drag-stuff envrc esb
+   '(acme-theme cider company consult doom-modeline drag-stuff envrc esb
 				exec-path-from-shell exwm geiser-guile go-mode
 				lsp-mode magit multiple-cursors naysayer-theme
 				org-static-blog pache-dark-theme plan9-theme rust-mode
