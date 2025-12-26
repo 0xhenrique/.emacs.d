@@ -10,7 +10,7 @@
 ;(use-package pache-dark-theme :ensure t :config (load-theme 'pache-dark :noconfirm))
 (add-to-list 'custom-theme-load-path
              "~/workspace/0xhenrique/pache-dark-theme/")
-(load-theme 'pache-dark :noconfirm)
+(load-theme 'modus-operandi :noconfirm)
 (use-package envrc :ensure t :config (envrc-global-mode))
 (use-package geiser :ensure t :defer t)
 
@@ -89,7 +89,7 @@
         eglot-autoshutdown t)
   (when pache/windows-p
     (setq eglot-send-changes-idle-time 1.0
-          eglot-ignored-server-capabilities 
+          eglot-ignored-server-capabilities
           '(:inlayHintProvider))))
 
 (use-package lsp-mode

@@ -3,8 +3,6 @@
 ;;; Commentary:
 
 (set-frame-font "Aporetic Sans Mono-12" nil t)
-(add-to-list 'default-frame-alist '(alpha . 0.93))
-(set-frame-parameter nil 'alpha 93)
 
 (setq-default indent-tabs-mode t
               tab-width 4
