@@ -2,7 +2,9 @@
 ;;; Code:
 ;;; Commentary:
 
-(set-frame-font "Aporetic Sans Mono-12" nil t)
+(set-frame-parameter nil 'alpha 85)
+(add-to-list 'default-frame-alist '(alpha . 85))
+(set-frame-font "-gnu-Unifont-regular-normal-normal-*-16-*-*-*-d-0-iso10646-1" nil t)
 
 (setq-default indent-tabs-mode t
               tab-width 4

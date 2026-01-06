@@ -10,7 +10,7 @@
 ;(use-package pache-dark-theme :ensure t :config (load-theme 'pache-dark :noconfirm))
 (add-to-list 'custom-theme-load-path
              "~/workspace/0xhenrique/pache-dark-theme/")
-(load-theme 'modus-operandi :noconfirm)
+(load-theme 'modus-vivendi :noconfirm)
 (use-package envrc :ensure t :config (envrc-global-mode))
 (use-package geiser :ensure t :defer t)
 

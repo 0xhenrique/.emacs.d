@@ -16,8 +16,8 @@
 ; "xrandr" nil "xrandr --output eDP-1 --off --output HDMI-2 --auto")
 
 ;; Set wallpaper
-;(start-process-shell-command
-; "feh" nil "feh --bg-fill ~/Pictures/papes/gruvbox/p2oydeg58dca1.png")
+(start-process-shell-command
+ "feh" nil "feh --bg-fill ~/Pictures/papes/fate/__artoria_pendragon_and_saber_fate_and_1_more_drawn_by_z3zz4__4d54542c70e2c6f161f5adc660278086.jpg")
 
 ;; Start picom
 (start-process-shell-command
@@ -121,17 +121,20 @@
 
 (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
                     (lambda () (interactive)
-                      (start-process-shell-command "pactl" nil "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
+                      (start-process-shell-command "wpctl" nil "wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+")))
 (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
                     (lambda () (interactive)
-                      (start-process-shell-command "pactl" nil "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
+                      (start-process-shell-command "wpctl" nil "wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-")))
+(exwm-input-set-key (kbd "<XF86AudioMute>")
+                    (lambda () (interactive)
+                      (start-process-shell-command "wpctl" nil "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")))
 
 ;;(exwm-input-set-key (kbd "s-q") (kill-this-buffer))
 ;;(exwm-input-set-key (kbd "s-f") 'firefox-search-term)
 ;;(exwm-input-set-key (kbd "s-l") 'librewolf-search-term)
 ;;(exwm-input-set-key (kbd "s-SPC") 'ivy-switch-buffer)
 ;;(exwm-input-set-key (kbd "s-k") 'ivy-switch-buffer-kill)
-(exwm-input-set-key (kbd "s-s") #'pache/screenshot-with-flameshot)
+(exwm-input-set-key (kbd "s-S-s") #'pache/screenshot-with-flameshot)
 
 (exwm-wm-mode)
 

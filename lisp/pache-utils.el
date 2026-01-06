@@ -2,9 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+;; udisksctl mount -b /dev/sda1 ;; mount hdd
+
 ;; Set keyboard layout switch (US and ABNT2)
-(start-process-shell-command
-  "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
+;(start-process-shell-command
+;  "setxkbmap" nil "setxkbmap -layout 'us,br' -option 'grp:win_space_toggle'")
 
 (defun pache/my-consult-bookmark ()
   "Select a bookmark using `completing-read` and copy it to the clipboard."
@@ -81,9 +83,9 @@
 ;; (start-process-shell-command
 ;;  "xinput" nil "xinput set-button-map 12 1 0 3 0 0 0 0 0")
 
-
 (defun pache/screenshot-with-flameshot ()
   "Make a screenshot using Flameshot."
+  (interactive)
   (start-process-shell-command "flameshot" nil "flameshot gui"))
 
 (defun pache/create-shell ()
@@ -174,8 +176,8 @@
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command
 ;; "deluged" nil "deluged")
-;;(start-process-shell-command
-;; "deluge-web" nil "deluge-web")
+(start-process-shell-command
+ "deluge-web" nil "deluge-web")
 
 (provide 'pache-utils)
 ;;; pache-utils.el ends here
