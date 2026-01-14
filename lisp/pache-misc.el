@@ -2,9 +2,13 @@
 ;;; Code:
 ;;; Commentary:
 
-(set-frame-parameter nil 'alpha 85)
-(add-to-list 'default-frame-alist '(alpha . 85))
-(set-frame-font "-gnu-Unifont-regular-normal-normal-*-16-*-*-*-d-0-iso10646-1" nil t)
+(set-frame-parameter nil 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background . 85))
+(set-frame-font "Aporetic Sans Mono-11" nil t)
+
+;; Swedish support
+(prefer-coding-system 'utf-8)
+(set-language-environment "UTF-8")
 
 (setq-default indent-tabs-mode t
               tab-width 4
@@ -35,7 +39,11 @@
 	  visible-bell t
       ring-bell-function t
       scroll-conservatively 100
-      resize-mini-windows 'grow-only)
+      resize-mini-windows 'grow-only
+	  locale-coding-system 'utf-8
+	  default-buffer-file-coding-system 'utf-8
+	  coding-system-for-read 'utf-8
+	  coding-system-for-write 'utf-8)
 
 ;; Guess major mode from file name
 (setq-default major-mode

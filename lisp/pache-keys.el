@@ -2,6 +2,14 @@
 ;;; Code:
 ;;; Commentary:
 
+;; Unset
+(global-unset-key (kbd "C-x <left>"))
+(global-unset-key (kbd "C-x <right>"))
+(global-unset-key (kbd "C-x <up>"))
+(global-unset-key (kbd "C-x <down>"))
+(global-unset-key (kbd "C-x C-r"))
+(global-unset-key (kbd "C-t"))
+
 ;; ESB
 (global-set-key (kbd "C-c e s") 'esb-select-bookmark)
 (global-set-key (kbd "C-c e a") 'esb-add-bookmark)
@@ -13,11 +21,6 @@
 (global-set-key (kbd "C-c e f") 'esb-flush-cache)
 
 ;; Windows/Panes/Frames
-(global-unset-key (kbd "C-x <left>"))
-(global-unset-key (kbd "C-x <right>"))
-(global-unset-key (kbd "C-x <up>"))
-(global-unset-key (kbd "C-x <down>"))
-(global-unset-key (kbd "C-x C-r"))
 (global-set-key (kbd "C-x <left>")  'windmove-left)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <up>")    'windmove-up)

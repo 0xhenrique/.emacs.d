@@ -45,8 +45,7 @@
               ("C-c C-b" . pache/typescript-compile)
               ("C-c C-f" . pache/typescript-format)
               ("C-c C-l" . pache/typescript-lint)
-              ("C-c C-t" . pache/typescript-test))
-  :hook (vue-mode . lsp-deferred))
+              ("C-c C-t" . pache/typescript-test)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Clojure
