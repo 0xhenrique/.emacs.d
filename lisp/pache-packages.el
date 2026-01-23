@@ -112,5 +112,7 @@
   :config
   (define-key copilot-completion-map (kbd "C-t") 'copilot-accept-completion))
 
+(use-package copilot-chat)
+
 (provide 'pache-packages)
 ;;; pache-packages.el ends here

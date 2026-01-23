@@ -5,7 +5,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(copilot yasnippet which-key vue-mode vertico undo-tree typescript-mode tron-legacy-theme sudo-edit rust-mode pache-dark-theme naysayer-theme multiple-cursors magit lsp-mode go-mode geiser-guile exec-path-from-shell esb envrc editorconfig drag-stuff corfu consult company cider)))
+   '(cider company consult copilot copilot-chat corfu drag-stuff envrc
+		   esb exec-path-from-shell geiser-guile go-mode lsp-mode
+		   magit multiple-cursors naysayer-theme pache-dark-theme
+		   rust-mode sudo-edit tron-legacy-theme typescript-mode
+		   undo-tree vertico vue-mode which-key yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
