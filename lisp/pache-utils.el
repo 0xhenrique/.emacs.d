@@ -49,14 +49,37 @@
     (message "Downloading audio: %s to %s" url music-dir)))
 
 (defun pache/convert-mp4-to-webm ()
-  "Convert file from MP4 to WEBM without audio and move it to ~/Videos/dump/."
+  "Convert MP4 to small VP9 WebM (no audio) for 4MB limit."
   (interactive)
   (let* ((file (dired-get-file-for-visit))
          (output-dir (expand-file-name "~/Videos/dump/"))
-         (output-file (concat output-dir (file-name-base file) ".webm"))
-         (command (format "ffmpeg -i \"%s\" -an \"%s\"" file output-file)))
-    (shell-command command)
-    (message "Converted %s to %s" file output-file)))
+         (base (file-name-base file))
+         (output-file (expand-file-name (concat base ".webm") output-dir)))
+    (unless (file-exists-p output-dir)
+      (make-directory output-dir t))
+    (let ((command (format
+                    "ffmpeg -i %S -c:v libvpx-vp9 -crf 30 -b:v 250k -maxrate 250k -bufsize 500k -vf scale=854:480 -an %S"
+                    file output-file)))
+      (shell-command command)
+      (message "Converted %s to %s (target ~4MB)" file output-file))))
+
+(defun pache/convert-mp4-to-webm-2pass ()
+  "Two-pass VP9 WebM for 4MB limit (no audio)."
+  (interactive)
+  (let* ((file (dired-get-file-for-visit))
+         (output-dir (expand-file-name "~/Videos/dump/"))
+         (base (file-name-base file))
+         (output-file (expand-file-name (concat base ".webm") output-dir))
+         (passlog (expand-file-name (concat base "_pass") output-dir)))
+    (unless (file-exists-p output-dir)
+      (make-directory output-dir t))
+    ;; Pass 1
+    (shell-command (format "ffmpeg -y -i %S -c:v libvpx-vp9 -b:v 250k -pass 1 -passlogfile %S -vf scale=854:480 -an -f webm NUL" file passlog))
+    ;; Pass 2
+    (shell-command (format "ffmpeg -i %S -c:v libvpx-vp9 -b:v 250k -pass 2 -passlogfile %S -vf scale=854:480 -an %S" file passlog output-file))
+    ;; Cleanup
+    (delete-file (concat passlog "0.log"))
+    (message "2-pass converted %s to %s" file output-file)))
 
 ;; Firefox Search
 (defun pache/firefox-search-term (term)
