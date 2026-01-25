@@ -56,6 +56,9 @@
     (when (daemonp)
       (set-exec-path-from-shell-PATH))))
 
+(when pache/windows-p
+  (load "~/.emacs.d/lisp/pache-slop.el"))
+
 (provide 'pache-platform)
 (pache/load-linux-config)
 ;;; pache-platform.el ends here

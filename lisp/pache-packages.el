@@ -106,13 +106,5 @@
     (setq lsp-idle-delay 1.0
           lsp-log-io nil)))
 
-(use-package copilot
-  :ensure t
-  :defer t
-  :config
-  (define-key copilot-completion-map (kbd "C-t") 'copilot-accept-completion))
-
-(use-package copilot-chat)
-
 (provide 'pache-packages)
 ;;; pache-packages.el ends here
