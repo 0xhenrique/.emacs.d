@@ -147,27 +147,99 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C/C++
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun pache/cpp-project-root ()
+  "Find the root of the current C/C++ project.
+Looks for Makefile, CMakeLists.txt, or falls back to .git."
+  (or (locate-dominating-file default-directory "Makefile")
+      (locate-dominating-file default-directory "CMakeLists.txt")
+      (locate-dominating-file default-directory ".git")
+      default-directory))
+
 (defun pache/cpp-build ()
-  "Compile the current C/C++ project using `make`."
+  "Compile the current C/C++ project using make or cmake."
   (interactive)
-  (compile "make -k"))
+  (let ((default-directory (pache/cpp-project-root)))
+    (cond
+     ((file-exists-p "build/Makefile")
+      (compile "cmake --build build"))
+     ((and (file-exists-p "CMakeLists.txt")
+           (not (file-exists-p "Makefile")))
+      (compile "cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build"))
+     ((file-exists-p "Makefile")
+      (compile "make -k"))
+     (t
+      (message "No build system found (Makefile or CMakeLists.txt)")))))
 
 (defun pache/cpp-run ()
-  "Run the compiled C/C++ binary (assumes `a.out`)."
+  "Run the compiled binary from project root."
   (interactive)
-  (compile "./a.out"))
+  (let* ((root (pache/cpp-project-root))
+         (default-directory root)
+         (candidates (list
+                      (expand-file-name "build/main" root)
+                      (expand-file-name "build/a.out" root)
+                      (expand-file-name (file-name-nondirectory
+                                         (directory-file-name root)) root)
+                      (expand-file-name "main" root)
+                      (expand-file-name "a.out" root)))
+         (executable (cl-find-if #'file-executable-p candidates)))
+    (if executable
+        (compile executable)
+      (let ((exe (read-file-name "Executable: " root)))
+        (compile exe)))))
 
-(defun pache/cpp-test ()
-  "Run test for the C/C++ project (assumes `make test`)."
+(defun pache/cpp-build-and-run ()
+  "Build the project and run the executable if successful."
   (interactive)
-  (compile "make test"))
+  (let ((default-directory (pache/cpp-project-root)))
+    (compile (pache/cpp--build-command))
+    (add-hook 'compilation-finish-functions
+              #'pache/cpp--run-after-compile nil t)))
+
+(defun pache/cpp--build-command ()
+  "Return the appropriate build command."
+  (cond
+   ((file-exists-p "build/Makefile") "cmake --build build")
+   ((and (file-exists-p "CMakeLists.txt")
+         (not (file-exists-p "Makefile")))
+    "cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build")
+   ((file-exists-p "Makefile") "make -k")
+   (t "make")))
+
+(defun pache/cpp--run-after-compile (buffer status)
+  "Run the binary after successful compilation."
+  (remove-hook 'compilation-finish-functions #'pache/cpp--run-after-compile t)
+  (when (string-match-p "finished" status)
+    (pache/cpp-run)))
 
 (defun pache/cpp-compile-file ()
   "Compile only the current file with g++."
   (interactive)
-  (let ((file (shell-quote-argument (buffer-file-name))))
-    (compile (format "g++ -Wall -O2 %s -o %s.out"
-                     file (file-name-sans-extension file)))))
+  (let* ((file (buffer-file-name))
+         (out (concat (file-name-sans-extension file) ".out")))
+    (compile (format "g++ -std=c++17 -Wall -Wextra -O2 %s -o %s"
+                     (shell-quote-argument file)
+                     (shell-quote-argument out)))))
+
+(defun pache/cpp-compile-file-and-run ()
+  "Compile current file and run it."
+  (interactive)
+  (let* ((file (buffer-file-name))
+         (out (concat (file-name-sans-extension file) ".out")))
+    (compile (format "g++ -std=c++17 -Wall -Wextra -O2 %s -o %s && %s"
+                     (shell-quote-argument file)
+                     (shell-quote-argument out)
+                     (shell-quote-argument out)))))
+
+(defun pache/cpp-test ()
+  "Run tests for the C/C++ project."
+  (interactive)
+  (let ((default-directory (pache/cpp-project-root)))
+    (cond
+     ((file-exists-p "build/Makefile")
+      (compile "cd build && ctest --output-on-failure"))
+     (t (compile "make test")))))
 
 (use-package cc-mode
   :ensure nil
@@ -177,7 +249,9 @@
               ("C-c C-b" . pache/cpp-build)
               ("C-c C-r" . pache/cpp-run)
               ("C-c C-t" . pache/cpp-test)
-              ("C-c C-c" . pache/cpp-compile-file)))
+              ("C-c C-c" . pache/cpp-compile-file)
+              ("C-c x" . pache/cpp-build-and-run)
+              ("C-c e" . pache/cpp-compile-file-and-run)))
 
 (provide 'pache-programming)
 ;;; pache-programming.el ends here
