@@ -4,7 +4,7 @@
 
 (set-frame-parameter nil 'alpha-background 85)
 (add-to-list 'default-frame-alist '(alpha-background . 85))
-(set-frame-font "-gnu-Unifont-regular-normal-normal-*-16-*-*-*-d-0-iso10646-1" nil t)
+(set-frame-font "Aporetic Sans Mono-11" nil t)
 
 ;; Swedish support
 (prefer-coding-system 'utf-8)
@@ -69,6 +69,7 @@
               (flymake-mode -1))))
 
 ;; Modes
+(visual-line-mode 1)
 (electric-pair-mode 1)
 (column-number-mode 1)
 (global-hl-line-mode 1)
