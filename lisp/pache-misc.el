@@ -2,9 +2,9 @@
 ;;; Code:
 ;;; Commentary:
 
-(set-frame-parameter nil 'alpha-background 85)
-(add-to-list 'default-frame-alist '(alpha-background . 85))
-(set-frame-font "Aporetic Sans Mono-11" nil t)
+(set-frame-parameter nil 'alpha-background 90)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+;(set-frame-font "Aporetic Sans Mono-11" nil t)
 
 ;; Swedish support
 (prefer-coding-system 'utf-8)
