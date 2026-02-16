@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: panic
-# key: ~pan
-# --
-
-if $1 {
-	panic(err)
-}

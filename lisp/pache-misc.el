@@ -52,8 +52,6 @@
                   (let ((buffer-file-name (buffer-name)))
                     (set-auto-mode)))))
 
-(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
-
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
@@ -85,7 +83,7 @@
 (global-auto-revert-mode 1)
 (fido-mode 1)
 (fido-vertical-mode 1)
-;(yas-global-mode t)
+(yas-global-mode t)
 
 (provide 'pache-misc)
 ;;; pache-misc.el ends here

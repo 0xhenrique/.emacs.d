@@ -99,6 +99,9 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
 
+;; Snippets
+(global-set-key (kbd "C-'") 'yas-expand)
+
 ;; Misc Utilities
 (global-set-key (kbd "C-x u") 'undo-tree-visualize)
 

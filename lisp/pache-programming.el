@@ -74,7 +74,7 @@
 
 (use-package clojure-mode
   :ensure t
-  :hook (clojure-mode . eglot-ensure)
+  ;:hook (clojure-mode . eglot-ensure)
   :bind (:map clojure-mode-map
               ("C-c C-b" . pache/leiningen-build)
               ("C-c C-r" . pache/leiningen-run)
@@ -111,7 +111,7 @@
 
 (use-package go-mode
   :ensure t
-  :hook (go-mode . eglot-ensure)
+  ;:hook (go-mode . eglot-ensure)
   :bind (:map go-mode-map
               ("C-c C-b" . (lambda () (interactive) (compile "go build ./...")))
               ("C-c C-t" . (lambda () (interactive) (compile "go test ./...")))
@@ -135,7 +135,7 @@
 
 (use-package rust-mode
   :ensure t
-  :hook (rust-mode . eglot-ensure)
+  ;:hook (rust-mode . eglot-ensure)
   :bind (:map rust-mode-map
 	      ("C-c C-a" . 'pache/rust-run-lens)
 	      ("C-c C-c" . 'pache/rust-compile)
@@ -243,8 +243,8 @@ Looks for Makefile, CMakeLists.txt, or falls back to .git."
 
 (use-package cc-mode
   :ensure nil
-  :hook ((c-mode . eglot-ensure)
-         (c++-mode . eglot-ensure))
+  ;:hook ((c-mode . eglot-ensure)
+         ;(c++-mode . eglot-ensure))
   :bind (:map c-mode-base-map
               ("C-c C-b" . pache/cpp-build)
               ("C-c C-r" . pache/cpp-run)
