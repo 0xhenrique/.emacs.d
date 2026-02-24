@@ -83,7 +83,7 @@
 (fido-mode 1)
 (fido-vertical-mode 1)
 (yas-global-mode 1)
-(display-line-numbers 1)
+(display-line-numbers-mode 1)
 
 (provide 'pache-misc)
 ;;; pache-misc.el ends here
