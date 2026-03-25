@@ -196,6 +196,24 @@
   (transpose-lines 1)
   (forward-line -1))
 
+(defun pache/get-project-relative-path ()
+  "Get the path of the current file relative to the project root.
+Returns the path starting from the project root directory name."
+  (interactive)
+  (let* ((file-path (buffer-file-name))
+         (project-root (when (project-current)
+                         (project-root (project-current))))
+         (result
+          (if (and file-path project-root)
+              (let* ((root-parent (file-name-directory (directory-file-name project-root)))
+                     (root-name (file-name-nondirectory (directory-file-name project-root))))
+                (concat root-name "/" (file-relative-name file-path project-root)))
+            (or file-path "No file or project"))))
+    (when (called-interactively-p 'any)
+      (message "%s" result)
+      (kill-new result))
+    result))
+
 ;; Deluge Daemon + Web
 ;;(start-process-shell-command
 ;; "deluged" nil "deluged")
