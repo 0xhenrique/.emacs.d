@@ -2,8 +2,8 @@
 ;;; Code:
 ;;; Commentary:
 
-(set-frame-parameter nil 'alpha-background 90)
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+;;(set-frame-parameter nil 'alpha-background 90)
+;;(add-to-list 'default-frame-alist '(alpha-background . 90))
 ;(set-frame-font "Aporetic Sans Mono-11" nil t)
 
 ;; Swedish support
@@ -20,7 +20,7 @@
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
       completion-ignore-case t
-	  backward-delete-char-untabify-method 'nil
+      backward-delete-char-untabify-method 'nil
       indent-line-function 'insert-tab
       confirm-kill-emacs #'yes-or-no-p
       window-resize-pixelwise t
@@ -35,15 +35,18 @@
       inhibit-startup-screen t
       sentence-end-double-space nil
       backup-directory-alist `(("." . "~/.saves"))
-	  ;; UI
-	  visible-bell t
+      ;; UI
+      visible-bell t
       ring-bell-function t
       scroll-conservatively 100
       resize-mini-windows 'grow-only
-	  locale-coding-system 'utf-8
-	  default-buffer-file-coding-system 'utf-8
-	  coding-system-for-read 'utf-8
-	  coding-system-for-write 'utf-8)
+      locale-coding-system 'utf-8
+      default-buffer-file-coding-system 'utf-8
+      coding-system-for-read 'utf-8
+	  dired-listing-switches "-alh --group-directories-first"
+	  dired-dwim-target t
+	  undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))
+      coding-system-for-write 'utf-8)
 
 ;; Guess major mode from file name
 (setq-default major-mode
@@ -84,6 +87,8 @@
 (fido-vertical-mode 1)
 (yas-global-mode 1)
 (global-display-line-numbers-mode 1)
+(drag-stuff-global-mode 1)
+(global-undo-tree-mode)
 
 (provide 'pache-misc)
 ;;; pache-misc.el ends here

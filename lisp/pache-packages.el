@@ -3,13 +3,13 @@
 ;;; Commentary:
 
 (use-package company :ensure t :defer t)
+(use-package undo-tree :ensure t :defer t)
 (use-package consult :ensure t :defer t)
-(use-package which-key :ensure t :defer t)
-(use-package markdown-mode :ensure t :defer t)
+(use-package dired :ensure t :defer t)
+(use-package magit :ensure t :defer t)
 (use-package sudo-edit :ensure t :defer t)
+(use-package drag-stuff :ensure t :defer t)
 (use-package pache-dark-theme :ensure t :config (load-theme 'tron-legacy :noconfirm))
-(use-package envrc :ensure t :config (envrc-global-mode))
-(use-package geiser :ensure t :defer t)
 
 (use-package esb
   :ensure t
@@ -25,20 +25,6 @@
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)))
 
-(use-package drag-stuff
-  :ensure t
-  :config
-  (drag-stuff-global-mode 1))
-
-(use-package magit
-  :ensure t
-  :defer t
-  :config
-  (when pache/windows-p
-    (setq magit-refresh-status-buffer nil)
-    (setq magit-diff-refine-hunk nil)
-    (setq magit-revision-show-gravatars nil)))
-
 (use-package yasnippet
   :ensure t
   :defer t
@@ -48,35 +34,12 @@
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (yas-reload-all)))
 
-(use-package project
-  :config
-  (when pache/windows-p
-    ;; Limit project search depth on Windows
-    (setq project-vc-merge-submodules nil)))
-
-(use-package geiser-guile
-  :ensure t
-  :defer t
-  :config
-  (setq geiser-guile-binary "guile"))
-
-(use-package dired
-  :config
-  (setq dired-listing-switches "-alh --group-directories-first"
-        dired-dwim-target t))
-
 (use-package exec-path-from-shell
   :ensure t
   :when pache/linux-p
   :config
   (setq exec-path-from-shell-variables '("PATH" "MANPATH" "NPM_CONFIG_PREFIX"))
   (exec-path-from-shell-initialize))
-
-(use-package undo-tree
-  :ensure t
-  :config
-  (global-undo-tree-mode)
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
 (use-package eglot
   :defer t
