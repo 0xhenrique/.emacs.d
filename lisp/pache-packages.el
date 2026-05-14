@@ -9,7 +9,9 @@
 (use-package magit :ensure t :defer t)
 (use-package sudo-edit :ensure t :defer t)
 (use-package drag-stuff :ensure t :defer t)
-(use-package pache-dark-theme :ensure t :config (load-theme 'tron-legacy :noconfirm))
+(use-package pache-dark-theme :ensure t :config (load-theme 'pache-dark :noconfirm))
+(use-package envrc :ensure t :config (envrc-global-mode))
+(use-package geiser :ensure t :defer t)
 
 (use-package esb
   :ensure t
