@@ -5,7 +5,7 @@
 (use-package company :ensure t :defer t)
 (use-package undo-tree :ensure t :defer t)
 (use-package consult :ensure t :defer t)
-(use-package dired :ensure t :defer t)
+;(use-package dired :ensure t :defer t)
 (use-package magit :ensure t :defer t)
 (use-package sudo-edit :ensure t :defer t)
 (use-package drag-stuff :ensure t :defer t)
