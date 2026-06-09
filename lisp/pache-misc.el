@@ -4,7 +4,7 @@
 
 ;;(set-frame-parameter nil 'alpha-background 90)
 ;;(add-to-list 'default-frame-alist '(alpha-background . 90))
-(set-frame-font "Unifont-14" nil t)
+(set-frame-font "Aporetic Sans Mono-14" nil t)
 
 ;; Swedish support
 (prefer-coding-system 'utf-8)
